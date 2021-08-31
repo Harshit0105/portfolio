@@ -1,0 +1,6 @@
+1.  react-intersection-observer
+2.  react-particles-js
+3.  react-router-dom
+4.  styled-components
+5.  @material-ui/core
+6.  @material-ui/icons
