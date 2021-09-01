@@ -31,8 +31,8 @@ function Navigation() {
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink to="/contect" activeClassName="active-class">
-            Contect
+          <NavLink to="/contact" activeClassName="active-class">
+            Contact
           </NavLink>
         </li>
       </ul>
@@ -75,9 +75,13 @@ const NavigationStyled = styled.nav`
       display: block;
       a {
         display: block;
-        padding: 0.2rem 0;
+        padding: 0.35rem 0;
         position: relative;
         z-index: 2000;
+        font-weight: 600;
+        text-transform: uppercase;
+        transition: all 0.4s ease-in-out;
+        letter-spacing: 1px;
         &:hover {
           cursor: pointer;
         }

@@ -37,7 +37,18 @@ body{
 a{
     font-family: inherit;
     color: inherit;
-    font-size: inherit;
+    font-size: 1rem;
+}
+
+h1{
+    font-size: 2.5rem;
+    color:var(--white-color);
+    span{
+        font-size:2.5rem;
+    }
+}
+span{
+    color: var(--primary-color);
 }
 `;
 
