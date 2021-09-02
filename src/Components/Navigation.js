@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import avatar from "../img/avatar.jpg";
+import avatar from "../img/profilepic.jpg";
 
 function Navigation() {
   return (
@@ -11,27 +11,27 @@ function Navigation() {
       </div>
       <ul className="nav-items">
         <li className="nav-item">
-          <NavLink to="/home" activeClassName="active-class">
+          <NavLink to="/" activeClassName="active-class" exact>
             Home
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink to="/about" activeClassName="active-class">
+          <NavLink to="/about" activeClassName="active-class" exact>
             About
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink to="/resume" activeClassName="active-class">
+          <NavLink to="/resume" activeClassName="active-class" exact>
             Resume
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink to="/projects" activeClassName="active-class">
-            Projects
+          <NavLink to="/portfolios" activeClassName="active-class" exact>
+            Portfolios
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink to="/contact" activeClassName="active-class">
+          <NavLink to="/contact" activeClassName="active-class" exact>
             Contact
           </NavLink>
         </li>
@@ -84,6 +84,7 @@ const NavigationStyled = styled.nav`
         letter-spacing: 1px;
         &:hover {
           cursor: pointer;
+          color: var(--primary-color);
         }
         &::before {
           content: "";

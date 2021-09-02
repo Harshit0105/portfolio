@@ -16,9 +16,13 @@ function HomePage() {
       </div>
       <div className="typography">
         <h1>
-          Hi I'm <span>Harshit Chudasama</span>
+          Hi, I'm <span>Harshit Chudasama</span>
         </h1>
-        <p>About......</p>
+        <p>
+          Paragraphs are the building blocks of papers. Many students define
+          paragraphs in terms of length: a paragraph is a group of at least five
+          sentences, a paragraph is
+        </p>
         <div className="icons">
           <a href="#" className="icon i-github">
             <GitHubIcon />
