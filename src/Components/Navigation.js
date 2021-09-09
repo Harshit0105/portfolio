@@ -78,7 +78,7 @@ const NavigationStyled = styled.nav`
         padding: 0.35rem 0;
         position: relative;
         z-index: 2000;
-        font-weight: 600;
+        font-weight: 500;
         text-transform: uppercase;
         transition: all 0.4s ease-in-out;
         letter-spacing: 1px;

@@ -19,7 +19,7 @@ const TitleStyled = styled.div`
   h2 {
     color: var(--white-color);
     font-size: 2.5rem;
-    font-weight: 300;
+    font-weight: 200;
     text-transform: uppercase;
     position: relative;
     padding-bottom: 0.2rem;
@@ -44,7 +44,7 @@ const TitleStyled = styled.div`
       border-radius: 15px;
     }
     span {
-      font-weight: 600;
+      font-weight: 500;
       color: rgba(25, 29, 43, 0.44);
       font-size: 3.5rem;
       position: absolute;
