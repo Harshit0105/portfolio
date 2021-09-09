@@ -1,13 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { MainLayout } from "../styles/Layouts";
-import Title from "../Components/Title";
+import Skills from "../Components/Skills";
+import Resume from "../Components/Resume";
 
 function ResumePage() {
   return (
     <MainLayout>
       <ResumeStyled>
-        <Title title={"Resume"} span={"Resume"} />
+        <Skills />
+        <Resume />
       </ResumeStyled>
     </MainLayout>
   );
