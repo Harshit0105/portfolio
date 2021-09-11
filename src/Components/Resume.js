@@ -50,9 +50,7 @@ function Resume() {
           <ResumeItem
             title={"Web Development Intern"}
             sub_title={"The Sparks Foundation"}
-            text={
-              "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, a paragraph is"
-            }
+            text={"NADIAD \n CPI: 9.08"}
             year={"JUN 2021-JULY 2021"}
           />
           <ResumeItem

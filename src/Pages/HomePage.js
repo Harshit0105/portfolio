@@ -24,22 +24,27 @@ function HomePage() {
           sentences, a paragraph is
         </p>
         <div className="icons">
-          <a href="#" className="icon i-github">
+          <a
+            href="https://github.com/Harshit0105"
+            target="_blank"
+            className="icon i-github"
+          >
             <GitHubIcon />
           </a>
-          <a href="#" className="icon i-linkedin">
+          <a
+            href="https://www.linkedin.com/in/harshit-chudasama-a927a0183"
+            target="_blank"
+            className="icon i-linkedin"
+          >
             <LinkedInIcon />
           </a>
-          <a href="#" className="icon i-codechef">
-            <CodeChefIcon />
-          </a>
-          <a href="#" className="icon i-twitter">
+          <a href="#" target="_blank" className="icon i-twitter">
             <TwitterIcon />
           </a>
-          <a href="#" className="icon i-instagram">
+          <a href="#" target="_blank" className="icon i-instagram">
             <InstagramIcon />
           </a>
-          <a href="#" className="icon i-facebook">
+          <a href="#" target="_blank" className="icon i-facebook">
             <FaceBookIcon />
           </a>
         </div>

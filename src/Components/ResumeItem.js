@@ -23,7 +23,7 @@ const ResumeItemStyled = styled.div`
   }
   .left-content {
     padding-left: 20px;
-    width: 50%;
+    min-width: 20%;
     position: relative;
     &::before {
       content: "";
@@ -47,7 +47,7 @@ const ResumeItemStyled = styled.div`
       position: absolute;
       left: 0;
       top: 15px;
-      width: 3rem;
+      width: 2.5rem;
       height: 2px;
       background-color: var(--border-color);
       content: "";
@@ -60,6 +60,9 @@ const ResumeItemStyled = styled.div`
     h6 {
       padding-bottom: 0.7rem;
       font-size: 1.4rem;
+    }
+    p {
+      white-space: pre-line;
     }
   }
 `;
