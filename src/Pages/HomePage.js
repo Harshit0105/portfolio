@@ -6,7 +6,6 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import InstagramIcon from "@material-ui/icons/Instagram";
-import CodeChefIcon from "@material-ui/icons/Code";
 
 function HomePage() {
   return (
@@ -28,6 +27,7 @@ function HomePage() {
             href="https://github.com/Harshit0105"
             target="_blank"
             className="icon i-github"
+            rel="noreferrer"
           >
             <GitHubIcon />
           </a>
@@ -35,16 +35,32 @@ function HomePage() {
             href="https://www.linkedin.com/in/harshit-chudasama-a927a0183"
             target="_blank"
             className="icon i-linkedin"
+            rel="noreferrer"
           >
             <LinkedInIcon />
           </a>
-          <a href="#" target="_blank" className="icon i-twitter">
+          <a
+            href="https://twitter.com/HarshitChudasa2"
+            target="_blank"
+            className="icon i-twitter"
+            rel="noreferrer"
+          >
             <TwitterIcon />
           </a>
-          <a href="#" target="_blank" className="icon i-instagram">
+          <a
+            href="https://instagram.com/harshit_01_05/"
+            target="_blank"
+            className="icon i-instagram"
+            rel="noreferrer"
+          >
             <InstagramIcon />
           </a>
-          <a href="#" target="_blank" className="icon i-facebook">
+          <a
+            href="https://www.facebook.com/harshit.chudasama.10/"
+            target="_blank"
+            className="icon i-facebook"
+            rel="noreferrer"
+          >
             <FaceBookIcon />
           </a>
         </div>

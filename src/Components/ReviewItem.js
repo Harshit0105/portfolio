@@ -14,9 +14,9 @@ const ReviewItemStyled = styled.div`
   border-left: 4px solid var(--border-color);
   background-color: var(--background-dark-grey);
   position: relative;
-  width: 50%;
+  width: 100%;
   &:not(:first-child) {
-    margin-left: 1rem;
+    /* margin-left: 1rem; */
   }
   &::after {
     content: "";

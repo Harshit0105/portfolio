@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { MainLayout, InnerLayout } from "../styles/Layouts";
-import styled from "styled-components";
 import Title from "../Components/Title";
 import portfolios from "../data/portfolios";
 import Menu from "../Components/Menu";
@@ -9,7 +8,7 @@ import Button from "../Components/Button";
 const allButtons = ["All", ...new Set(portfolios.map((item) => item.category))];
 function PortfoliosPage() {
   const [menuItem, setMenuItem] = useState(portfolios);
-  const [button, setButton] = useState(allButtons);
+  const [button] = useState(allButtons);
 
   const filter = (button) => {
     if (button === "All") {

@@ -28,7 +28,13 @@ function ReviewsSection() {
 
 const ReviewsSectionStyled = styled.section`
   .reviews {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2rem;
+    width: 100%;
+    @media screen and (max-width: 650px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 `;
 

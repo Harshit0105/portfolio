@@ -49,7 +49,7 @@ const ProgramBarStyled = styled.div`
       width: 0;
     }
     100% {
-      z-index: 100;
+      z-index: 15;
       transform: translateX(0);
     }
   }

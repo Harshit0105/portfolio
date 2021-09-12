@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { MainLayout, InnerLayout } from "../styles/Layouts";
+import { InnerLayout } from "../styles/Layouts";
 import Title from "../Components/Title";
 import SmallTitle from "./SmallTitle";
 import BriefcaseIcon from "@material-ui/icons/BusinessCenter";

@@ -7,7 +7,7 @@ function ImageSection() {
   return (
     <ImageSectionStyled>
       <div className="left-content">
-        <img src={resume} alt="resume image"></img>
+        <img src={resume} alt="resume" />
       </div>
       <div className="right-content">
         <h4>
@@ -45,6 +45,12 @@ function ImageSection() {
 const ImageSectionStyled = styled.div`
   margin-top: 3rem;
   display: flex;
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    .left-content {
+      margin-bottom: 2rem;
+    }
+  }
   .left-content {
     width: 100%;
     img {
