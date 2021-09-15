@@ -24,6 +24,8 @@ const ButtonStyled = styled.button`
   color: var(--white-color);
   transition: all 0.4s ease-in-out;
   margin-bottom: 1.2rem;
+
+  border-radius: 32px;
   &:active,
   &:focus {
     background-color: var(--primary-color);

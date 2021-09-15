@@ -15,12 +15,14 @@ function HomePage() {
       </div>
       <div className="typography">
         <h1>
-          Hi, I'm <span>Harshit Chudasama</span>
+          <span>Harshit Chudasama</span>
         </h1>
         <p>
-          Paragraphs are the building blocks of papers. Many students define
-          paragraphs in terms of length: a paragraph is a group of at least five
-          sentences, a paragraph is
+          I'm{" "}
+          <span
+            class="typed"
+            data-typed-items="Software Engineer, Developer, Freelancer"
+          ></span>
         </p>
         <div className="icons">
           <a
@@ -87,7 +89,14 @@ const HomePageStyled = styled.header`
     transform: translate(-50%, -50%);
     text-align: center;
     width: 80%;
-
+    p {
+      font-size: 2rem;
+      color: var(--white-color);
+      span {
+        font-size: 2rem;
+        color: var(--primary-color-light);
+      }
+    }
     .icons {
       display: flex;
       justify-content: center;
@@ -103,6 +112,9 @@ const HomePageStyled = styled.header`
         &:hover {
           border: 2px solid var(--primary-color);
           color: var(--primary-color);
+          box-shadow: 0px 0px 5px var(--primary-color),
+            0px 0px 5px var(--primary-color);
+          transition: all 0.4s ease-in-out;
         }
         svg {
           margin: 0.5rem;
@@ -110,8 +122,10 @@ const HomePageStyled = styled.header`
       }
       .i-linkedin {
         &:hover {
-          border: 2px solid skyblue;
+          border: 2px solid;
           color: skyblue;
+          box-shadow: 0px 0px 5px skyblue, 0px 0px 5px skyblue;
+          transition: all 0.4s ease-in-out;
         }
       }
       .i-codechef {
@@ -124,12 +138,16 @@ const HomePageStyled = styled.header`
         &:hover {
           border: 2px solid pink;
           color: pink;
+          box-shadow: 0px 0px 5px pink, 0px 0px 5px pink;
+          transition: all 0.4s ease-in-out;
         }
       }
       .i-github {
         &:hover {
           border: 2px solid #5f4687;
           color: #5f4687;
+          box-shadow: 0px 0px 5px #5f4687, 0px 0px 5px #5f4687;
+          transition: all 0.4s ease-in-out;
         }
       }
     }

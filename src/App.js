@@ -11,7 +11,6 @@ import Switch from "@material-ui/core/Switch";
 import { useState, useEffect } from "react";
 import MenuIcon from "@material-ui/icons/Menu";
 import { IconButton } from "@material-ui/core";
-// import { nativeTouchData } from "react-dom/test-utils";
 
 function App() {
   const [theme, setTheme] = useState("dark-theme");

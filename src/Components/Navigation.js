@@ -65,14 +65,20 @@ const NavigationStyled = styled.nav`
   }
 
   .nav-items {
-    width: 100%;
+    width: 80%;
     text-align: center;
-    .active-class {
-      background-color: var(--primary-color);
-    }
 
+    .nav-item:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+    .active-class {
+      box-shadow: inset -4px -4px 8px var(--background-dark-color),
+        inset 8px 8px 16px rgba(0, 0, 0, 0.1);
+      border-radius: 32px;
+    }
     li {
       display: block;
+      padding: 2px;
       a {
         display: block;
         padding: 0.35rem 0;
@@ -82,11 +88,20 @@ const NavigationStyled = styled.nav`
         text-transform: uppercase;
         transition: all 0.4s ease-in-out;
         letter-spacing: 1px;
-        &:hover {
+        &:not(.active-class) {
+          box-shadow: -4px -4px 5px var(--background-dark-color),
+            6px 6px 10px rgba(0, 0, 0, 0.2);
+          border-radius: 32px;
+        }
+        &:hover:not(.active-class) {
           cursor: pointer;
           color: var(--white-color);
+          box-shadow: -4px -4px 5px var(--background-light-color-2),
+            6px 6px 10px var(--background-dark-color);
+          border-radius: 32px;
+          transition: all 0.4s ease-in-out;
         }
-        &::before {
+        /* &::before {
           content: "";
           position: absolute;
           bottom: 0;
@@ -97,7 +112,7 @@ const NavigationStyled = styled.nav`
           transition: All 0.4s cubic-bezier(1, -0.2, 0.25, 0.95);
           opacity: 0.21;
           z-index: -1;
-        }
+        } */
       }
       a:hover::before {
         width: 100%;

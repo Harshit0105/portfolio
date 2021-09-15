@@ -1,9 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-import resume from "../img/resume.jpg";
+import resume from "../img/i2.jpg";
 import PrimaryButton from "./PrimaryButton";
 
 function ImageSection() {
+  const calculateDate = () => {
+    var today = new Date();
+    var birthDate = new Date("2001/05/01");
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  };
   return (
     <ImageSectionStyled>
       <div className="left-content">
@@ -14,9 +24,9 @@ function ImageSection() {
           I am <span>Harshit Chudasama</span>
         </h4>
         <p className="paragraph">
-          Paragraphs are the building blocks of papers. Many students define
-          paragraphs in terms of length: a paragraph is a group of at least five
-          sentences, a paragraph is
+          Highly organized, good learner. Strongly motivated individual with
+          desire to learn new technological aspects and highly interested to
+          work in the core areas of Mobile Applications and Web development.
         </p>
         <div className="about-info">
           <div className="info-title">
@@ -25,15 +35,13 @@ function ImageSection() {
             <p>Nationality</p>
             <p>Languages</p>
             <p>Location</p>
-            <p>Service</p>
           </div>
           <div className="info">
             <p>: Harshit Chudasama</p>
-            <p>: 20</p>
+            <p>: {calculateDate()}</p>
             <p>: Indian</p>
             <p>: English, Hindi, Gujarati</p>
             <p>: Una, Gujarat-362560</p>
-            <p>: XYZ</p>
           </div>
         </div>
         <PrimaryButton title={"Download CV"} />
