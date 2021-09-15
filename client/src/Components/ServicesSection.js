@@ -8,6 +8,7 @@ import intelligence from "../img/intelligence.svg";
 import gamedev from "../img/game-dev.svg";
 import ar from "../img/AR.svg";
 import mobileDev from "../img/mobileDevelopment.svg";
+import webDev from "../img/webDevelopment.svg";
 
 function ServicesSection() {
   return (
@@ -24,16 +25,16 @@ function ServicesSection() {
           />
           <div className="mid-card">
             <ServiceCard
-              image={mobileDev}
-              title={"Artificial Intelligence"}
+              image={webDev}
+              title={"Game Development"}
               paragraph={
                 "Paragraphs are the building blocks of papers. Many students"
               }
             />
           </div>
           <ServiceCard
-            image={gamedev}
-            title={"Game Development"}
+            image={mobileDev}
+            title={"Artificial Intelligence"}
             paragraph={
               "Paragraphs are the building blocks of papers. Many students"
             }
