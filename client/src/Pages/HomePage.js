@@ -19,10 +19,7 @@ function HomePage() {
         </h1>
         <p>
           I'm{" "}
-          <span
-            class="typed"
-            data-typed-items="Software Engineer, Developer, Freelancer"
-          ></span>
+          <span class="typed" data-typed-items="Developer, Freelancer"></span>
         </p>
         <div className="icons">
           <a
@@ -89,12 +86,25 @@ const HomePageStyled = styled.header`
     transform: translate(-50%, -50%);
     text-align: center;
     width: 80%;
+    h1 {
+      span {
+        @media screen and (max-width: 447px) {
+          font-size: 1.5rem;
+        }
+      }
+    }
     p {
       font-size: 2rem;
       color: var(--white-color);
       span {
         font-size: 2rem;
         color: var(--primary-color-light);
+        @media screen and (max-width: 447px) {
+          font-size: 1.5rem;
+        }
+      }
+      @media screen and (max-width: 447px) {
+        font-size: 1.5rem;
       }
     }
     .icons {

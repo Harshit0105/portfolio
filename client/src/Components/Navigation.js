@@ -114,10 +114,10 @@ const NavigationStyled = styled.nav`
           z-index: -1;
         } */
       }
-      a:hover::before {
+      /* a:hover::before {
         width: 100%;
         height: 100%;
-      }
+      } */
     }
   }
 

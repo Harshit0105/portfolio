@@ -7,6 +7,7 @@ const Work = new Schema(
     company: { type: String, required: true },
     duration: { type: String, required: true },
     experience: { type: String, required: true },
+    link: { type: String, required: true },
   },
   { timestamps: true }
 );

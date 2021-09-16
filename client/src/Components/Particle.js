@@ -10,13 +10,14 @@ function Particle() {
       params={{
         particles: {
           number: {
-            value: 110,
+            value: 150,
             density: {
               enable: true,
               value_area: 1200,
             },
           },
           color: {
+            //
             value: "#636e72",
           },
           shape: {
@@ -30,13 +31,15 @@ function Particle() {
           },
           line_linked: {
             enable: false,
-            distance: 150,
-            opacity: 0.8,
+            distance: 110,
+            opacity: 0.5,
             width: 1,
             shadow: {
-              enable: false,
-              color: "#e74c3c",
-              blur: 5,
+              enable: true,
+              color: "#007bff",
+              // #e74c3c
+              // #007bff
+              blur: 1,
             },
           },
           move: {
