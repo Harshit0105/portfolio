@@ -1,21 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { InnerLayout } from "../styles/Layouts";
 import Title from "../Components/Title";
 import ProgressBar from "../Components/ProgressBar";
 
+import { getSkills } from "../data/skill";
+
 function Skills() {
+  const [skills, setSkills] = useState([]);
+  useEffect(() => {
+    let mounted = true;
+    getSkills().then((items) => {
+      if (mounted) {
+        if (items.success === true) {
+          setSkills(items.data);
+        } else {
+          setSkills([]);
+        }
+      }
+    });
+    return () => (mounted = false);
+  });
   return (
     <SkillsStyled>
       <Title title={"My Skills"} span={"My Skills"} />
       <InnerLayout>
         <div className="skills">
-          <ProgressBar title={"HTML5"} text={"70%"} width={"70%"} />
-          <ProgressBar title={"JAVASCRIPT"} text={"80%"} width={"80%"} />
-          <ProgressBar title={"Python"} text={"85%"} width={"85%"} />
-          <ProgressBar title={"CSS"} text={"60%"} width={"60%"} />
-          <ProgressBar title={"C"} text={"70%"} width={"70%"} />
-          <ProgressBar title={"ReactJs"} text={"75%"} width={"75%"} />
+          {skills.map((item) => (
+            <ProgressBar
+              title={item.title}
+              text={item.percentage}
+              width={item.percentage}
+            />
+          ))}
         </div>
       </InnerLayout>
     </SkillsStyled>

@@ -6,8 +6,9 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import InstagramIcon from "@material-ui/icons/Instagram";
+import Typed from "react-typed";
 
-function HomePage() {
+function HomePage({ name }) {
   return (
     <HomePageStyled>
       <div className="p-particle-js">
@@ -15,10 +16,16 @@ function HomePage() {
       </div>
       <div className="typography">
         <h1>
-          <span>Harshit Chudasama</span>
+          <span>{name}</span>
         </h1>
         <p>
           I'm{" "}
+          <Typed
+            strings={["Developer", "Freelancer"]}
+            typeSpeed={80}
+            backSpeed={70}
+            loop
+          />
           <span class="typed" data-typed-items="Developer, Freelancer"></span>
         </p>
         <div className="icons">
@@ -26,7 +33,7 @@ function HomePage() {
             href="https://github.com/Harshit0105"
             target="_blank"
             className="icon i-github"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             <GitHubIcon />
           </a>
@@ -34,7 +41,7 @@ function HomePage() {
             href="https://www.linkedin.com/in/harshit-chudasama-a927a0183"
             target="_blank"
             className="icon i-linkedin"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             <LinkedInIcon />
           </a>
@@ -42,7 +49,7 @@ function HomePage() {
             href="https://twitter.com/HarshitChudasa2"
             target="_blank"
             className="icon i-twitter"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             <TwitterIcon />
           </a>
@@ -50,7 +57,7 @@ function HomePage() {
             href="https://instagram.com/harshit_01_05/"
             target="_blank"
             className="icon i-instagram"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             <InstagramIcon />
           </a>
@@ -58,7 +65,7 @@ function HomePage() {
             href="https://www.facebook.com/harshit.chudasama.10/"
             target="_blank"
             className="icon i-facebook"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             <FaceBookIcon />
           </a>

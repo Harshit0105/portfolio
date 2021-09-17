@@ -12,15 +12,33 @@ import Switch from "@material-ui/core/Switch";
 import { useState, useEffect } from "react";
 import MenuIcon from "@material-ui/icons/Menu";
 import { IconButton } from "@material-ui/core";
+import getUsers from "./data/user";
 
 function App() {
   const [theme, setTheme] = useState("dark-theme");
   const [checked, setChecked] = useState(false);
   const [navToggle, setNavToggle] = useState(false);
+  const [user, setUser] = useState([]);
 
   useEffect(() => {
     document.documentElement.className = theme;
   }, [theme]);
+  useEffect(() => {
+    let mounted = true;
+    getUsers().then((items) => {
+      if (mounted) {
+        if (items.success === true) {
+          setUser(items.data);
+        } else {
+          setUser([]);
+        }
+      }
+    });
+    return () => {
+      mounted = false;
+      console.log(user);
+    };
+  }, []);
 
   const themeToggler = () => {
     if (theme === "light-theme") {
@@ -65,7 +83,7 @@ function App() {
         </div>
         <Switching>
           <Route path="/" exact>
-            <HomePage />
+            <HomePage name={user[0] ? user[0].full_name : ""} />
           </Route>
           <Route path="/about" exact>
             <AboutPage />

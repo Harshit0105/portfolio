@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import Link from "../img/link.svg";
 
-function ResumeItem({ year, title, text, sub_title }) {
+function ResumeItem({ year, title, text, sub_title, link = "" }) {
   return (
     <ResumeItemStyled>
       <div className="left-content">
@@ -9,7 +10,14 @@ function ResumeItem({ year, title, text, sub_title }) {
       </div>
       <div className="right-content">
         <h5>{title}</h5>
-        <h6>{sub_title}</h6>
+        <h6>
+          {sub_title}
+          {link !== "" && (
+            <a href={link} target="_blank">
+              <img style={{ marginLeft: "10px" }} src={Link} alt="link" />
+            </a>
+          )}
+        </h6>
         <p>{text}</p>
       </div>
     </ResumeItemStyled>

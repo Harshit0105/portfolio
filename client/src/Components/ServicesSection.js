@@ -4,9 +4,6 @@ import { InnerLayout } from "../styles/Layouts";
 import Title from "../Components/Title";
 import ServiceCard from "./ServiceCard";
 import design from "../img/design.svg";
-import intelligence from "../img/intelligence.svg";
-import gamedev from "../img/game-dev.svg";
-import ar from "../img/AR.svg";
 import mobileDev from "../img/mobileDevelopment.svg";
 import webDev from "../img/webDevelopment.svg";
 
@@ -19,25 +16,19 @@ function ServicesSection() {
           <ServiceCard
             image={design}
             title={"Web Design"}
-            paragraph={
-              "Paragraphs are the building blocks of papers. Many students"
-            }
+            paragraph={"v fm vk vkjrk"}
           />
           <div className="mid-card">
             <ServiceCard
               image={webDev}
-              title={"Game Development"}
-              paragraph={
-                "Paragraphs are the building blocks of papers. Many students"
-              }
+              title={"Web Development"}
+              paragraph={"v flkmvlkfmvkldf"}
             />
           </div>
           <ServiceCard
             image={mobileDev}
-            title={"Artificial Intelligence"}
-            paragraph={
-              "Paragraphs are the building blocks of papers. Many students"
-            }
+            title={"Application Development"}
+            paragraph={"fvkjf vkf jkb vjkfnb"}
           />
         </div>
       </ServicesSectionStyled>

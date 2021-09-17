@@ -20,6 +20,7 @@ const ServiceCardStyled = styled.div`
   border-right: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
   border-radius: 2px;
+  min-height: 100%;
   transition: all 0.4s ease-in-out;
   &:hover {
     border-top: 4px solid var(--primary-color);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { InnerLayout } from "../styles/Layouts";
 import Title from "../Components/Title";
@@ -7,7 +7,35 @@ import BriefcaseIcon from "@material-ui/icons/BusinessCenter";
 import SchoolIcon from "@material-ui/icons/School";
 import ResumeItem from "../Components/ResumeItem";
 
+import { getWorks } from "../data/work";
+import { getEducations } from "../data/education";
+
 function Resume() {
+  const [works, setWorks] = useState([]);
+  const [educations, setEducations] = useState([]);
+  useEffect(() => {
+    let mounted = true;
+    getWorks().then((items) => {
+      if (mounted) {
+        if (items.success === true) {
+          setWorks(items.data);
+        } else {
+          setWorks([]);
+        }
+      }
+    });
+    getEducations().then((items) => {
+      if (mounted) {
+        console.log(items);
+        if (items.success === true) {
+          setEducations(items.data);
+        } else {
+          setEducations([]);
+        }
+      }
+    });
+    return () => (mounted = false);
+  }, []);
   const briefcase = <BriefcaseIcon />;
   const school = <SchoolIcon />;
   return (
@@ -18,57 +46,34 @@ function Resume() {
           <SmallTitle icon={briefcase} title={"Work Experience"} />
         </div>
         <div className="resume-content">
-          <ResumeItem
-            title={"Web Development Intern"}
-            sub_title={"The Sparks Foundation"}
-            text={
-              "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, a paragraph is"
-            }
-            year={"JUN 2021-JULY 2021"}
-          />
-          <ResumeItem
-            title={"Web Development Intern"}
-            sub_title={"The Sparks Foundation"}
-            text={
-              "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, a paragraph is"
-            }
-            year={"2021-2021"}
-          />
-          <ResumeItem
-            title={"Web Development Intern"}
-            sub_title={"The Sparks Foundation"}
-            text={
-              "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, a paragraph is"
-            }
-            year={"2021-2021"}
-          />
+          {works.map((item) => (
+            <ResumeItem
+              key={item._id}
+              title={item.title}
+              sub_title={item.company}
+              year={item.duration}
+              text={item.experience}
+              link={item.link}
+            />
+          ))}
         </div>
         <div className="small-title">
           <SmallTitle icon={school} title={"Education"} />
         </div>
         <div className="resume-content">
-          <ResumeItem
-            title={"Web Development Intern"}
-            sub_title={"The Sparks Foundation"}
-            text={"NADIAD \n CPI: 9.08"}
-            year={"JUN 2021-JULY 2021"}
-          />
-          <ResumeItem
-            title={"Web Development Intern"}
-            sub_title={"The Sparks Foundation"}
-            text={
-              "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, a paragraph is"
-            }
-            year={"2021-2021"}
-          />
-          <ResumeItem
-            title={"Web Development Intern"}
-            sub_title={"The Sparks Foundation"}
-            text={
-              "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, a paragraph is"
-            }
-            year={"2021-2021"}
-          />
+          {educations
+            .slice()
+            .reverse()
+            .map((item) => (
+              <ResumeItem
+                key={item._id}
+                title={item.title}
+                sub_title={item.school}
+                year={item.duration}
+                text={item.details}
+                link={""}
+              />
+            ))}
         </div>
       </InnerLayout>
     </ResumeStyled>
