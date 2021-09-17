@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-function PrimaryButton({ title }) {
-  return <PrimaryButtonStyled>{title}</PrimaryButtonStyled>;
+function PrimaryButton({ title, link = "#" }) {
+  return <PrimaryButtonStyled href={link}>{title}</PrimaryButtonStyled>;
 }
 
 const PrimaryButtonStyled = styled.a`

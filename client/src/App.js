@@ -86,7 +86,7 @@ function App() {
             <HomePage name={user[0] ? user[0].full_name : ""} />
           </Route>
           <Route path="/about" exact>
-            <AboutPage />
+            <AboutPage user={user[0] ? user[0] : null} />
           </Route>
           <Route path="/resume" exact>
             <ResumePage />
@@ -95,7 +95,7 @@ function App() {
             <PortfoliosPage />
           </Route>
           <Route path="/contact" exact>
-            <ContactPage />
+            <ContactPage user={user[0] ? user[0] : null} />
           </Route>
         </Switching>
       </MainContentStyled>

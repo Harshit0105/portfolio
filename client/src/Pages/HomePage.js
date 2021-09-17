@@ -26,7 +26,6 @@ function HomePage({ name }) {
             backSpeed={70}
             loop
           />
-          <span class="typed" data-typed-items="Developer, Freelancer"></span>
         </p>
         <div className="icons">
           <a

@@ -8,7 +8,7 @@ import EmailIcon from "@material-ui/icons/Email";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import ContactItem from "../Components/ContactItem";
 
-function ContactPage() {
+function ContactPage({ user }) {
   const phone = <PhoneIcon />;
   const email = <EmailIcon />;
   const location = <LocationOnIcon />;
@@ -52,20 +52,20 @@ function ContactPage() {
             <ContactItem
               icon={phone}
               title={"Phone"}
-              contact1={"+919904825833"}
-              contact2={"+917227001574"}
+              contact1={user ? user.contact1 : ""}
+              contact2={user ? user.contact2 : ""}
             />
             <ContactItem
               icon={email}
               title={"Email"}
-              contact1={"harshit010501@gmail.com"}
-              contact2={""}
+              contact1={user ? user.email1 : ""}
+              contact2={user ? user.email2 : ""}
             />
             <ContactItem
               icon={location}
               title={"Address"}
-              contact1={"25-'Yogi Kunj', Sajan-nagar"}
-              contact2={"Una-362560, Gujarat, India"}
+              contact1={user ? user.address1 : ""}
+              contact2={user ? user.address2 : ""}
             />
           </div>
         </InnerLayout>

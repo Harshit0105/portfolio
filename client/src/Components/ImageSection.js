@@ -3,7 +3,7 @@ import styled from "styled-components";
 import resume from "../img/i2.jpg";
 import PrimaryButton from "./PrimaryButton";
 
-function ImageSection() {
+function ImageSection({ user }) {
   const calculateDate = () => {
     var today = new Date();
     var birthDate = new Date("2001/05/01");
@@ -21,7 +21,7 @@ function ImageSection() {
       </div>
       <div className="right-content">
         <h4>
-          I am <span>Harshit Chudasama</span>
+          I am <span>{user ? user.full_name : ""}</span>
         </h4>
         <p className="paragraph">
           Highly organized, good learner. Strongly motivated individual with
@@ -37,14 +37,16 @@ function ImageSection() {
             <p>Location</p>
           </div>
           <div className="info">
-            <p>: Harshit Chudasama</p>
+            <p>: {user ? user.full_name : ""}</p>
             <p>: {calculateDate()}</p>
             <p>: Indian</p>
-            <p>: English, Hindi, Gujarati</p>
-            <p>: Una, Gujarat-362560</p>
+            <p>
+              : {user ? user.languages.map((item) => `${item}`).join(", ") : ""}
+            </p>
+            <p>: {user ? user.address2 : ""}</p>
           </div>
         </div>
-        <PrimaryButton title={"Download CV"} />
+        <PrimaryButton title={"Download CV"} link={user ? user.cv_link : "#"} />
       </div>
     </ImageSectionStyled>
   );

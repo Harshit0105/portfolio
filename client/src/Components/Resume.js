@@ -46,16 +46,19 @@ function Resume() {
           <SmallTitle icon={briefcase} title={"Work Experience"} />
         </div>
         <div className="resume-content">
-          {works.map((item) => (
-            <ResumeItem
-              key={item._id}
-              title={item.title}
-              sub_title={item.company}
-              year={item.duration}
-              text={item.experience}
-              link={item.link}
-            />
-          ))}
+          {works
+            .slice()
+            .reverse()
+            .map((item) => (
+              <ResumeItem
+                key={item._id}
+                title={item.title}
+                sub_title={item.company}
+                year={item.duration}
+                text={item.experience}
+                link={item.link}
+              />
+            ))}
         </div>
         <div className="small-title">
           <SmallTitle icon={school} title={"Education"} />
