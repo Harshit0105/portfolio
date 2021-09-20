@@ -1,7 +1,7 @@
 import base_url from "./config";
 
-export function getWorks() {
-  let url = base_url + "works/";
+export function getPortfolios() {
+  let url = base_url + "projects/";
   return fetch(url)
     .then((data) => data.json())
     .catch(function (err) {

@@ -7,6 +7,7 @@
 7.  react-bootstrap@next bootstrap@5.1.0
 8. typed.js
 9. react-helmet
+10. react-loader-spinner
 
 
 #Helps

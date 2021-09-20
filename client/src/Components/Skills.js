@@ -3,22 +3,27 @@ import styled from "styled-components";
 import { InnerLayout } from "../styles/Layouts";
 import Title from "../Components/Title";
 import ProgressBar from "../Components/ProgressBar";
+import Loader from "react-loader-spinner";
 
 import { getSkills } from "../data/skill";
 
 function Skills() {
   const [skills, setSkills] = useState([]);
+  const [isSkillLoading, setSkillIsLoading] = useState(true);
+
   useEffect(() => {
     let mounted = true;
     getSkills().then((items) => {
       if (mounted) {
         if (items.success === true) {
+          setSkillIsLoading(false);
           setSkills(items.data);
         } else {
           setSkills([]);
         }
       }
     });
+
     return () => (mounted = false);
   });
   return (
@@ -26,13 +31,25 @@ function Skills() {
       <Title title={"My Skills"} span={"My Skills"} />
       <InnerLayout>
         <div className="skills">
-          {skills.map((item) => (
-            <ProgressBar
-              title={item.title}
-              text={item.percentage}
-              width={item.percentage}
+          {isSkillLoading && (
+            <Loader
+              className="loader"
+              type="MutatingDots"
+              color="#007bff"
+              secondaryColor="#cbced8" //"#2e344e"  //"#00BFFF"
+              height={100}
+              width={100}
+              // timeout={3000}
             />
-          ))}
+          )}
+          {!isSkillLoading &&
+            skills.map((item) => (
+              <ProgressBar
+                title={item.title}
+                text={item.percentage}
+                width={item.percentage}
+              />
+            ))}
         </div>
       </InnerLayout>
     </SkillsStyled>

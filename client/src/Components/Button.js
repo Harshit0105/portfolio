@@ -4,13 +4,15 @@ import styled from "styled-components";
 function Button({ filter, button }) {
   return (
     <ButtonsStyled>
-      {button.map((item, i) => {
-        return (
-          <ButtonStyled key={i} onClick={() => filter(item)}>
-            {item}
-          </ButtonStyled>
-        );
-      })}
+      {button
+        ? button.map((item, i) => {
+            return (
+              <ButtonStyled key={i} onClick={() => filter(item)}>
+                {item}
+              </ButtonStyled>
+            );
+          })
+        : null}
     </ButtonsStyled>
   );
 }

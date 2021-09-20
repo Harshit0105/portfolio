@@ -2,5 +2,9 @@ import base_url from "./config";
 
 export function getSkills() {
   let url = base_url + "skills/";
-  return fetch(url).then((data) => data.json());
+  return fetch(url)
+    .then((data) => data.json())
+    .catch(function (err) {
+      return { success: false };
+    });
 }
