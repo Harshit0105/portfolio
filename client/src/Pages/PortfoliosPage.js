@@ -30,7 +30,6 @@ function PortfoliosPage() {
         let newButtons = [
           ...items.data.map((item) => item.category.map((item2) => item2)),
         ];
-        // items.data.map((item) => [...newButtons, ...item.category]);
         newButtons = [].concat(...newButtons);
         allButtons = ["All", ...new Set(newButtons.map((x) => x))];
 

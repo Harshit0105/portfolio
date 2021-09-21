@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import GitHubIcon from "@material-ui/icons/GitHub";
+import WebsiteIcon from "@material-ui/icons/Language";
 
 function Menu({ menuItem }) {
   return (
@@ -10,21 +11,23 @@ function Menu({ menuItem }) {
         .reverse()
         .map((item) => {
           return (
-            <div className="grid-item" key={item.id}>
+            <div className="grid-item" key={item._id}>
               <div className="portfolio-content">
                 <div className="portfolio-image">
-                  <img src={"assets/img/portfolio/cv_css.png"} alt="" />
+                  <img src={"assets/img/portfolio/" + item.imageUrl} alt="" />
                   <ul>
                     <li>
-                      <a href={item.link1}>
+                      <a target="_blank" href={item.gitHubLink}>
                         <GitHubIcon />
                       </a>
                     </li>
-                    {/* <li>
-                    <a href={item.link2}>
-                      <GitHubIcon />
-                    </a>
-                  </li> */}
+                    {item.webSiteLink && (
+                      <li>
+                        <a target="_blank" href={item.webSiteLink}>
+                          <WebsiteIcon />
+                        </a>
+                      </li>
+                    )}
                   </ul>
                 </div>
                 <h6>{item.title}</h6>
@@ -61,7 +64,7 @@ const MenuStyled = styled.div`
       img {
         width: 100%;
         height: 30vh;
-        object-fit: cover;
+        /* object-fit: contain; */
       }
       ul {
         transform: translateY(-600px);
@@ -97,7 +100,7 @@ const MenuStyled = styled.div`
           content: "";
           position: absolute;
           left: 2%;
-          top: 4%;
+          top: 2%;
           height: 0;
           width: 0;
           transition: all 0.4s ease-in-out;
@@ -134,7 +137,8 @@ const MenuStyled = styled.div`
           }
         }
         &::before {
-          height: calc(100% - 33%);
+          max-height: 300px;
+          height: calc(100% - 60%);
           width: calc(100% - 4%);
           background-color: white;
           opacity: 0.9;
