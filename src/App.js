@@ -14,8 +14,10 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { IconButton } from "@material-ui/core";
 import getUsers from "./data/user";
 import Loader from "react-loader-spinner";
+import dotenv from "dotenv";
 
 function App() {
+  dotenv.config();
   const [theme, setTheme] = useState("dark-theme");
   const [checked, setChecked] = useState(false);
   const [navToggle, setNavToggle] = useState(false);

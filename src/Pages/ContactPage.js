@@ -54,11 +54,12 @@ function ContactPage({ user }) {
       to_name: "Harshit Chudasama",
       feedback: message,
     };
+
     EmailJS.send(
-      "service_9ajtojg",
-      "template_7dt087p",
+      process.env.REACT_APP_ServiceId,
+      process.env.REACT_APP_TemplateId,
       template,
-      "user_FNheKEeuUZWQT11is1AL8"
+      process.env.REACT_APP_userId
     ).then(
       (res) => {
         alert("Thanks to contact me.");
