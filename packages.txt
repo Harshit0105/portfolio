@@ -1,0 +1,17 @@
+1.  react-intersection-observer
+2.  react-particles-js
+3.  react-router-dom
+4.  styled-components
+5.  @material-ui/core
+6.  @material-ui/icons
+7.  react-bootstrap@next bootstrap@5.1.0
+8. typed.js
+9. react-helmet
+10. react-loader-spinner
+11. validator
+12. emailjs-com
+
+
+#Helps
+1. Cubic Bezier => to get curves in transition of css
+2. Particles
