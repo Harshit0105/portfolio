@@ -3,7 +3,18 @@ import styled from "styled-components";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import WebsiteIcon from "@material-ui/icons/Language";
 
+function importAll(r) {
+  let images = {};
+  r.keys().map((item, index) => {
+    images[item.replace("./", "")] = r(item);
+  });
+  return images;
+}
+
 function Menu({ menuItem }) {
+  const images = importAll(
+    require.context("../img/portImages", false, /\.(png|jpe?g|svg)$/)
+  );
   return (
     <MenuStyled>
       {menuItem
@@ -14,7 +25,10 @@ function Menu({ menuItem }) {
             <div className="grid-item" key={item._id}>
               <div className="portfolio-content">
                 <div className="portfolio-image">
-                  <img src={"../img/portImages/" + item.imageUrl} alt="" />
+                  <img
+                    src={images ? images[item.imageUrl].default : ""}
+                    alt=""
+                  />
                   <ul>
                     <li>
                       <a

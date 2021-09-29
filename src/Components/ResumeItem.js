@@ -13,7 +13,7 @@ function ResumeItem({ year, title, text, sub_title, link = "" }) {
         <h6>
           {sub_title}
           {link !== "" && (
-            <a href={link} target="_blank">
+            <a href={link} target="_blank" rel="noreferrer">
               <img style={{ marginLeft: "10px" }} src={Link} alt="link" />
             </a>
           )}

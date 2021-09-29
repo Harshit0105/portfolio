@@ -45,6 +45,7 @@ function Skills() {
           {!isSkillLoading &&
             skills.map((item) => (
               <ProgressBar
+                key={item._id}
                 title={item.title}
                 text={item.percentage}
                 width={item.percentage}
