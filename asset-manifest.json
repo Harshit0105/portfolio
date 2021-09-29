@@ -1,23 +1,34 @@
 {
   "files": {
-    "main.js": "/portfolio/static/js/main.c7f06b2f.chunk.js",
-    "main.js.map": "/portfolio/static/js/main.c7f06b2f.chunk.js.map",
+    "main.js": "/portfolio/static/js/main.6b399b09.chunk.js",
+    "main.js.map": "/portfolio/static/js/main.6b399b09.chunk.js.map",
     "runtime-main.js": "/portfolio/static/js/runtime-main.37da8305.js",
     "runtime-main.js.map": "/portfolio/static/js/runtime-main.37da8305.js.map",
-    "static/js/2.217da908.chunk.js": "/portfolio/static/js/2.217da908.chunk.js",
-    "static/js/2.217da908.chunk.js.map": "/portfolio/static/js/2.217da908.chunk.js.map",
+    "static/js/2.efb8aad6.chunk.js": "/portfolio/static/js/2.efb8aad6.chunk.js",
+    "static/js/2.efb8aad6.chunk.js.map": "/portfolio/static/js/2.efb8aad6.chunk.js.map",
     "index.html": "/portfolio/index.html",
-    "static/js/2.217da908.chunk.js.LICENSE.txt": "/portfolio/static/js/2.217da908.chunk.js.LICENSE.txt",
+    "static/js/2.efb8aad6.chunk.js.LICENSE.txt": "/portfolio/static/js/2.efb8aad6.chunk.js.LICENSE.txt",
+    "static/media/bus_booking.jpg": "/portfolio/static/media/bus_booking.ea6e2655.jpg",
+    "static/media/car_rental.png": "/portfolio/static/media/car_rental.d8c7eb22.png",
+    "static/media/cloth_site.svg": "/portfolio/static/media/cloth_site.32b096d8.svg",
     "static/media/design.8ecb3043.svg": "/portfolio/static/media/design.8ecb3043.svg",
+    "static/media/e_commerse_mobile_application.jpg": "/portfolio/static/media/e_commerse_mobile_application.98925898.jpg",
+    "static/media/e_tender.png": "/portfolio/static/media/e_tender.af8b137e.png",
+    "static/media/expenses_recorder_mobile_application.jpeg": "/portfolio/static/media/expenses_recorder_mobile_application.067081c4.jpeg",
     "static/media/i2.47089062.jpg": "/portfolio/static/media/i2.47089062.jpg",
     "static/media/link.3e0137f0.svg": "/portfolio/static/media/link.3e0137f0.svg",
+    "static/media/meal_recipe_mobile_application.jpg": "/portfolio/static/media/meal_recipe_mobile_application.d2749cc8.jpg",
     "static/media/mobileDevelopment.51da0a96.svg": "/portfolio/static/media/mobileDevelopment.51da0a96.svg",
+    "static/media/online_attendance.png": "/portfolio/static/media/online_attendance.7b2f9ab9.png",
+    "static/media/portfolio.png": "/portfolio/static/media/portfolio.173a86ce.png",
     "static/media/profilepic.a79b4000.jpg": "/portfolio/static/media/profilepic.a79b4000.jpg",
+    "static/media/react_styled.png": "/portfolio/static/media/react_styled.c23ef94e.png",
+    "static/media/rest_api.jpg": "/portfolio/static/media/rest_api.f282e898.jpg",
     "static/media/webDevelopment.103221f5.svg": "/portfolio/static/media/webDevelopment.103221f5.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.37da8305.js",
-    "static/js/2.217da908.chunk.js",
-    "static/js/main.c7f06b2f.chunk.js"
+    "static/js/2.efb8aad6.chunk.js",
+    "static/js/main.6b399b09.chunk.js"
   ]
 }
