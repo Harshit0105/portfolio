@@ -14,16 +14,24 @@ function Menu({ menuItem }) {
             <div className="grid-item" key={item._id}>
               <div className="portfolio-content">
                 <div className="portfolio-image">
-                  <img src={"assets/img/portfolio/" + item.imageUrl} alt="" />
+                  <img src={"../img/portImages/" + item.imageUrl} alt="" />
                   <ul>
                     <li>
-                      <a target="_blank" href={item.gitHubLink}>
+                      <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href={item.gitHubLink}
+                      >
                         <GitHubIcon />
                       </a>
                     </li>
                     {item.webSiteLink && (
                       <li>
-                        <a target="_blank" href={item.webSiteLink}>
+                        <a
+                          target="_blank"
+                          rel="noreferrer"
+                          href={item.webSiteLink}
+                        >
                           <WebsiteIcon />
                         </a>
                       </li>

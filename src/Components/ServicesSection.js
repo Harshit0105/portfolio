@@ -13,22 +13,18 @@ function ServicesSection() {
       <ServicesSectionStyled>
         <Title title={"Services"} span={"Services"} />
         <div className="services">
-          <ServiceCard
-            image={design}
-            title={"Web Design"}
-            paragraph={"v fm vk vkjrk"}
-          />
+          <ServiceCard image={design} title={"Web Design"} paragraph={""} />
           <div className="mid-card">
             <ServiceCard
               image={webDev}
               title={"Web Development"}
-              paragraph={"v flkmvlkfmvkldf"}
+              paragraph={""}
             />
           </div>
           <ServiceCard
             image={mobileDev}
             title={"Application Development"}
-            paragraph={"fvkjf vkf jkb vjkfnb"}
+            paragraph={""}
           />
         </div>
       </ServicesSectionStyled>
