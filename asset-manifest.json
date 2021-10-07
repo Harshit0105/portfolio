@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/portfolio/static/js/main.6b399b09.chunk.js",
-    "main.js.map": "/portfolio/static/js/main.6b399b09.chunk.js.map",
+    "main.js": "/portfolio/static/js/main.a77032eb.chunk.js",
+    "main.js.map": "/portfolio/static/js/main.a77032eb.chunk.js.map",
     "runtime-main.js": "/portfolio/static/js/runtime-main.37da8305.js",
     "runtime-main.js.map": "/portfolio/static/js/runtime-main.37da8305.js.map",
-    "static/js/2.efb8aad6.chunk.js": "/portfolio/static/js/2.efb8aad6.chunk.js",
-    "static/js/2.efb8aad6.chunk.js.map": "/portfolio/static/js/2.efb8aad6.chunk.js.map",
+    "static/js/2.d47f7f8b.chunk.js": "/portfolio/static/js/2.d47f7f8b.chunk.js",
+    "static/js/2.d47f7f8b.chunk.js.map": "/portfolio/static/js/2.d47f7f8b.chunk.js.map",
     "index.html": "/portfolio/index.html",
-    "static/js/2.efb8aad6.chunk.js.LICENSE.txt": "/portfolio/static/js/2.efb8aad6.chunk.js.LICENSE.txt",
+    "static/js/2.d47f7f8b.chunk.js.LICENSE.txt": "/portfolio/static/js/2.d47f7f8b.chunk.js.LICENSE.txt",
     "static/media/bus_booking.jpg": "/portfolio/static/media/bus_booking.ea6e2655.jpg",
     "static/media/car_rental.png": "/portfolio/static/media/car_rental.d8c7eb22.png",
     "static/media/cloth_site.svg": "/portfolio/static/media/cloth_site.32b096d8.svg",
@@ -28,7 +28,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.37da8305.js",
-    "static/js/2.efb8aad6.chunk.js",
-    "static/js/main.6b399b09.chunk.js"
+    "static/js/2.d47f7f8b.chunk.js",
+    "static/js/main.a77032eb.chunk.js"
   ]
 }
