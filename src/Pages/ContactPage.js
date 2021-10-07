@@ -62,11 +62,11 @@ function ContactPage({ user }) {
       process.env.REACT_APP_userId
     ).then(
       (res) => {
-        alert("Thanks to contact me.");
         setName("");
         setMessage("");
         setSubject("");
         setEmailField("");
+        alert("Thanks to contact me.");
       },
       (err) => {
         alert("There is some error please try again after some time!!");
