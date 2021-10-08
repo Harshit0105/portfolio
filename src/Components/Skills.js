@@ -43,14 +43,17 @@ function Skills() {
             />
           )}
           {!isSkillLoading &&
-            skills.map((item) => (
-              <ProgressBar
-                key={item._id}
-                title={item.title}
-                text={item.percentage}
-                width={item.percentage}
-              />
-            ))}
+            skills
+              .slice()
+              .reverse()
+              .map((item) => (
+                <ProgressBar
+                  key={item._id}
+                  title={item.title}
+                  text={item.percentage}
+                  width={item.percentage}
+                />
+              ))}
         </div>
       </InnerLayout>
     </SkillsStyled>
