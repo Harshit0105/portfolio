@@ -58,9 +58,9 @@ function PortfoliosPage() {
             // timeout={3000}
           />
         )}
-        {!isPortfolioLoading && (
+        {/* {!isPortfolioLoading && (
           <Button filter={filter} button={button ? button : null} />
-        )}
+        )} */}
         {!isPortfolioLoading && <Menu menuItem={menuItem} />}
       </InnerLayout>
     </MainLayout>

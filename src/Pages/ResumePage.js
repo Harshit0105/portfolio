@@ -8,8 +8,8 @@ function ResumePage() {
   return (
     <MainLayout>
       <ResumeStyled>
-        <Skills />
         <Resume />
+        <Skills />
       </ResumeStyled>
     </MainLayout>
   );
