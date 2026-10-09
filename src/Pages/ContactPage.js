@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { MainLayout, InnerLayout } from "../styles/Layouts";
 import styled from "styled-components";
 import Title from "../Components/Title";
@@ -7,52 +7,51 @@ import PhoneIcon from "@material-ui/icons/Phone";
 import EmailIcon from "@material-ui/icons/Email";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import ContactItem from "../Components/ContactItem";
-import validator from "validator";
 import EmailJS from "emailjs-com";
+import { validateContact, MAX_MESSAGE_LENGTH } from "../utils/validateContact";
+
+const EMPTY_FORM = { name: "", email: "", subject: "", message: "" };
+
+const FIELDS = [
+  { id: "name", label: "Enter your name*", type: "text", autoComplete: "name" },
+  { id: "email", label: "Enter your email*", type: "email", autoComplete: "email" },
+  { id: "subject", label: "Enter your subject*", type: "text", autoComplete: "off" },
+];
 
 function ContactPage({ user }) {
   const phone = <PhoneIcon />;
   const email = <EmailIcon />;
   const location = <LocationOnIcon />;
-  const [name, setName] = useState("");
-  const [emailField, setEmailField] = useState("");
-  const [subject, setSubject] = useState("");
-  const [message, setMessage] = useState("");
-  const [isValid, setIsValid] = useState(false);
+  const [form, setForm] = useState(EMPTY_FORM);
+  const [touched, setTouched] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState(null);
 
-  useEffect(() => {
-    if (
-      name.length !== 0 &&
-      emailField.length !== 0 &&
-      validator.isEmail(emailField) &&
-      subject.length !== 0 &&
-      message.length !== 0
-    ) {
-      setIsValid(true);
-    } else {
-      setIsValid(false);
-    }
-  }, [name, subject, message, emailField]);
-  const handleNameChange = (event) => {
-    setName(event.target.value);
+  const errors = validateContact(form);
+  const isValid = Object.keys(errors).length === 0;
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+    setStatus(null);
   };
-  const handleEmailChange = (event) => {
-    setEmailField(event.target.value);
+  const handleBlur = (event) => {
+    const { name } = event.target;
+    setTouched((prev) => ({ ...prev, [name]: true }));
   };
-  const handleSubjectChange = (event) => {
-    setSubject(event.target.value);
-  };
-  const handleMessageChange = (event) => {
-    setMessage(event.target.value);
-  };
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    console.log("Submited");
+    if (!isValid || isSubmitting) {
+      setTouched({ name: true, email: true, subject: true, message: true });
+      return;
+    }
+    setIsSubmitting(true);
     const template = {
-      from_name: name + " " + emailField,
-      subject: subject,
+      from_name: `${form.name.trim()} ${form.email.trim()}`,
+      subject: form.subject.trim(),
       to_name: "Harshit Chudasama",
-      feedback: message,
+      feedback: form.message.trim(),
     };
 
     EmailJS.send(
@@ -60,23 +59,21 @@ function ContactPage({ user }) {
       process.env.REACT_APP_TemplateId,
       template,
       process.env.REACT_APP_userId
-    ).then(
-      (res) => {
-        setName("");
-        setMessage("");
-        setSubject("");
-        setEmailField("");
-        alert("Thanks to contact me.");
-      },
-      (err) => {
-        alert("There is some error please try again after some time!!");
-        setName("");
-        setMessage("");
-        setSubject("");
-        setEmailField("");
-      }
-    );
+    )
+      .then(() => {
+        setForm(EMPTY_FORM);
+        setTouched({});
+        setStatus({ type: "success", text: "Thanks for reaching out! I'll get back to you soon." });
+      })
+      .catch(() => {
+        // Keep what the user typed so they can retry without losing it.
+        setStatus({ type: "error", text: "Something went wrong. Please try again in a moment." });
+      })
+      .finally(() => setIsSubmitting(false));
   };
+
+  const fieldError = (field) => (touched[field] ? errors[field] : undefined);
+
   return (
     <MainLayout>
       <Title title={"Contact"} span={"Contact"} />
@@ -86,63 +83,63 @@ function ContactPage({ user }) {
             <div className="contact-title">
               <h4>Get In Touch</h4>
             </div>
-            <form className="form">
+            <form className="form" onSubmit={handleFormSubmit} noValidate>
+              {FIELDS.map(({ id, label, type, autoComplete }) => (
+                <div className="form-field" key={id}>
+                  <label htmlFor={id}>{label}</label>
+                  <input
+                    type={type}
+                    id={id}
+                    name={id}
+                    autoComplete={autoComplete}
+                    value={form[id]}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    aria-invalid={Boolean(fieldError(id))}
+                    aria-describedby={fieldError(id) ? `${id}-error` : undefined}
+                  />
+                  {fieldError(id) && (
+                    <span className="field-error" id={`${id}-error`}>
+                      {fieldError(id)}
+                    </span>
+                  )}
+                </div>
+              ))}
               <div className="form-field">
-                <label htmlFor="name">Enter your name*</label>
-                <input
-                  type="text"
-                  id="name"
-                  value={name}
-                  onChange={handleNameChange}
-                ></input>
-              </div>
-              <div className="form-field">
-                <label htmlFor="email">Enter your email*</label>
-                <input
-                  type="email"
-                  id="email"
-                  value={emailField}
-                  onChange={handleEmailChange}
-                ></input>
-              </div>
-              <div className="form-field">
-                <label htmlFor="subject">Enter your subject*</label>
-                <input
-                  type="text"
-                  id="subject"
-                  value={subject}
-                  onChange={handleSubjectChange}
-                ></input>
-              </div>
-              <div className="form-field">
-                <label htmlFor="textarea">Enter your message*</label>
+                <label htmlFor="message">Enter your message*</label>
                 <textarea
-                  placeholder={message}
-                  onChange={handleMessageChange}
-                  name="textarea"
-                  id="textarea"
+                  id="message"
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  maxLength={MAX_MESSAGE_LENGTH}
+                  aria-invalid={Boolean(fieldError("message"))}
+                  aria-describedby={fieldError("message") ? "message-error" : undefined}
                   cols="30"
                   rows="10"
                 ></textarea>
+                <span className="char-count">
+                  {form.message.length}/{MAX_MESSAGE_LENGTH}
+                </span>
+                {fieldError("message") && (
+                  <span className="field-error" id="message-error">
+                    {fieldError("message")}
+                  </span>
+                )}
               </div>
-              <div
-                className={
-                  !isValid
-                    ? "disable form-field f-button"
-                    : "form-field f-button"
-                }
-              >
+              <div className="form-field f-button">
                 <ContactButton
-                  title={"Send email"}
-                  onclick={
-                    isValid
-                      ? handleFormSubmit
-                      : (e) => {
-                          e.preventDefault();
-                        }
-                  }
+                  type="submit"
+                  title={isSubmitting ? "Sending..." : "Send email"}
+                  disabled={!isValid || isSubmitting}
                 />
               </div>
+              {status && (
+                <p className={`form-status ${status.type}`} role="status" aria-live="polite">
+                  {status.text}
+                </p>
+              )}
             </form>
           </div>
           <div className="right-section">
@@ -194,9 +191,26 @@ const ContactPageStyled = styled.section`
       @media screen and (max-width: 502px) {
         width: 80%;
       }
-      .disable {
-        opacity: 0.3;
-        cursor: hidden;
+      .field-error {
+        display: block;
+        margin-top: 0.3rem;
+        color: #e74c3c;
+        font-size: 0.85rem;
+      }
+      .char-count {
+        display: block;
+        text-align: right;
+        font-size: 0.8rem;
+        opacity: 0.7;
+      }
+      .form-status {
+        margin-top: 1rem;
+        &.success {
+          color: #2ecc71;
+        }
+        &.error {
+          color: #e74c3c;
+        }
       }
       .form-field {
         width: 100%;

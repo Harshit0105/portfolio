@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-function ContactButton({ title, onclick }) {
-  return <ContactButtonStyled onClick={onclick}>{title}</ContactButtonStyled>;
+function ContactButton({ title, type = "button", disabled = false, onClick }) {
+  return (
+    <ContactButtonStyled type={type} disabled={disabled} onClick={onClick}>
+      {title}
+    </ContactButtonStyled>
+  );
 }
 
 const ContactButtonStyled = styled.button`
@@ -16,6 +20,10 @@ const ContactButtonStyled = styled.button`
   font-size: inherit;
   position: relative;
   transition: all 0.4s ease-in-out;
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
   &::after {
     content: "";
     position: absolute;
@@ -26,7 +34,7 @@ const ContactButtonStyled = styled.button`
     bottom: 0;
     opacity: 0.8;
   }
-  &:hover::after {
+  &:hover:not(:disabled)::after {
     width: 100%;
     background-color: var(--white-color);
   }

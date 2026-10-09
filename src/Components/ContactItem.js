@@ -21,7 +21,7 @@ const ContactItemStyled = styled.div`
   background-color: var(--background-dark-grey);
   display: flex;
   align-items: center;
-  &:not(last-child) {
+  &:not(:last-child) {
     margin-bottom: 2rem;
   }
   margin-bottom: 1.5rem;
