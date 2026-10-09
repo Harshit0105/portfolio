@@ -1,10 +1,5 @@
-import base_url from "./config";
+import { fetchResource } from "./api";
 
-export function getSkills() {
-  let url = base_url + "skills/";
-  return fetch(url)
-    .then((data) => data.json())
-    .catch(function (err) {
-      return { success: false };
-    });
+export function getSkills(options) {
+  return fetchResource("skills/", options);
 }

@@ -9,41 +9,44 @@ import ContactPage from "./Pages/ContactPage";
 import { Switch as Switching, Route } from "react-router-dom";
 import Brightness4Icon from "@material-ui/icons/Brightness4";
 import Switch from "@material-ui/core/Switch";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import MenuIcon from "@material-ui/icons/Menu";
 import { IconButton } from "@material-ui/core";
 import getUsers from "./data/user";
 import Loader from "react-loader-spinner";
-import dotenv from "dotenv";
+import ErrorMessage from "./Components/ErrorMessage";
 
 function App() {
-  dotenv.config();
   const [theme, setTheme] = useState("dark-theme");
   const [checked, setChecked] = useState(false);
   const [navToggle, setNavToggle] = useState(false);
   const [user, setUser] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState(null);
 
   useEffect(() => {
     document.documentElement.className = theme;
   }, [theme]);
-  useEffect(() => {
-    let mounted = true;
-    getUsers().then((items) => {
-      if (mounted) {
-        if (items.success === true) {
-          setUser(items.data);
-          setIsLoading(false);
-        } else {
-          setUser([]);
-          setIsLoading(true);
-        }
+  const loadUser = useCallback((signal) => {
+    setIsLoading(true);
+    setLoadError(null);
+    return getUsers({ signal }).then((items) => {
+      if (signal && signal.aborted) return;
+      if (items.success) {
+        setUser(items.data);
+      } else {
+        setUser([]);
+        setLoadError("Could not load profile data.");
       }
+      setIsLoading(false);
     });
-    return () => {
-      mounted = false;
-    };
   }, []);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    loadUser(controller.signal);
+    return () => controller.abort();
+  }, [loadUser]);
 
   const themeToggler = () => {
     if (theme === "light-theme") {
@@ -69,7 +72,10 @@ function App() {
           />
         </div>
       )}
-      {!isLoading && (
+      {!isLoading && loadError && (
+        <ErrorMessage message={loadError} onRetry={() => loadUser()} />
+      )}
+      {!isLoading && !loadError && (
         <div>
           <Sidebar navToggle={navToggle} />
           <div className="theme">

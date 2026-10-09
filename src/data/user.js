@@ -1,10 +1,5 @@
-import base_url from "./config";
+import { fetchResource } from "./api";
 
-export default function getUsers() {
-  let url = base_url + "users/";
-  return fetch(url)
-    .then((data) => data.json())
-    .catch(function (err) {
-      return { success: false };
-    });
+export default function getUsers(options) {
+  return fetchResource("users/", options);
 }
