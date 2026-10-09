@@ -4,17 +4,22 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 import WebsiteIcon from "@material-ui/icons/Language";
 
 function importAll(r) {
-  let images = {};
-  r.keys().map((item, index) => {
-    images[item.replace("./", "")] = r(item);
+  const images = {};
+  r.keys().forEach((item) => {
+    images[item.replace("./", "")] = r(item).default;
   });
   return images;
 }
 
+// Built once at module load instead of on every render.
+const images = importAll(
+  require.context("../img/portImages", false, /\.(png|jpe?g|svg)$/)
+);
+
 function Menu({ menuItem }) {
-  const images = importAll(
-    require.context("../img/portImages", false, /\.(png|jpe?g|svg)$/)
-  );
+  if (menuItem.length === 0) {
+    return <EmptyStyled>No projects in this category yet.</EmptyStyled>;
+  }
   return (
     <MenuStyled>
       {menuItem
@@ -25,16 +30,20 @@ function Menu({ menuItem }) {
             <div className="grid-item" key={item._id}>
               <div className="portfolio-content">
                 <div className="portfolio-image">
-                  <img
-                    src={images ? images[item.imageUrl].default : ""}
-                    alt=""
-                  />
+                  {images[item.imageUrl] && (
+                    <img
+                      src={images[item.imageUrl]}
+                      alt={`Screenshot of ${item.title}`}
+                      loading="lazy"
+                    />
+                  )}
                   <ul>
                     <li>
                       <a
                         target="_blank"
                         rel="noreferrer"
                         href={item.gitHubLink}
+                        aria-label={`${item.title} source code on GitHub`}
                       >
                         <GitHubIcon />
                       </a>
@@ -45,6 +54,7 @@ function Menu({ menuItem }) {
                           target="_blank"
                           rel="noreferrer"
                           href={item.webSiteLink}
+                          aria-label={`${item.title} live website`}
                         >
                           <WebsiteIcon />
                         </a>
@@ -61,6 +71,11 @@ function Menu({ menuItem }) {
     </MenuStyled>
   );
 }
+
+const EmptyStyled = styled.p`
+  text-align: center;
+  padding: 2rem 0;
+`;
 
 const MenuStyled = styled.div`
   display: grid;

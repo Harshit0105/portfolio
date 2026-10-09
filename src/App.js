@@ -16,16 +16,36 @@ import getUsers from "./data/user";
 import Loader from "react-loader-spinner";
 import dotenv from "dotenv";
 
+const THEME_STORAGE_KEY = "portfolio-theme";
+
+function getInitialTheme() {
+  try {
+    const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
+    if (stored === "light-theme" || stored === "dark-theme") return stored;
+  } catch (e) {
+    // localStorage can be unavailable (private mode, blocked storage).
+  }
+  const prefersLight =
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: light)").matches;
+  return prefersLight ? "light-theme" : "dark-theme";
+}
+
 function App() {
   dotenv.config();
-  const [theme, setTheme] = useState("dark-theme");
-  const [checked, setChecked] = useState(false);
+  const [theme, setTheme] = useState(getInitialTheme);
+  const checked = theme === "light-theme";
   const [navToggle, setNavToggle] = useState(false);
   const [user, setUser] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     document.documentElement.className = theme;
+    try {
+      window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+    } catch (e) {
+      // Ignore: the theme still applies for this session.
+    }
   }, [theme]);
   useEffect(() => {
     let mounted = true;
@@ -46,13 +66,7 @@ function App() {
   }, []);
 
   const themeToggler = () => {
-    if (theme === "light-theme") {
-      setTheme("dark-theme");
-      setChecked(false);
-    } else {
-      setTheme("light-theme");
-      setChecked(true);
-    }
+    setTheme((prev) => (prev === "light-theme" ? "dark-theme" : "light-theme"));
   };
   return (
     <div className="App">
@@ -79,18 +93,20 @@ function App() {
               </div>
               <div className="right-content">
                 <Switch
-                  value=""
                   checked={checked}
-                  // onChange={}
-                  inputProps={{ "area-label": "" }}
+                  onChange={themeToggler}
+                  inputProps={{ "aria-label": "Toggle light theme" }}
                   size="medium"
-                  onClick={themeToggler}
                 />
               </div>
             </div>
           </div>
           <div className="ham-burger-menu">
-            <IconButton onClick={() => setNavToggle(!navToggle)}>
+            <IconButton
+              aria-label={navToggle ? "Close navigation" : "Open navigation"}
+              aria-expanded={navToggle}
+              onClick={() => setNavToggle(!navToggle)}
+            >
               <MenuIcon />
             </IconButton>
           </div>
