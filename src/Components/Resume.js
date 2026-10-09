@@ -7,6 +7,7 @@ import BriefcaseIcon from "@material-ui/icons/BusinessCenter";
 import SchoolIcon from "@material-ui/icons/School";
 import ResumeItem from "../Components/ResumeItem";
 import Loader from "react-loader-spinner";
+import ErrorMessage from "./ErrorMessage";
 
 import { getWorks } from "../data/work";
 import { getEducations } from "../data/education";
@@ -16,32 +17,25 @@ function Resume() {
   const [educations, setEducations] = useState([]);
   const [isWorkLoading, setWorkIsLoading] = useState(true);
   const [isEduLoading, setEduIsLoading] = useState(true);
+  const [workError, setWorkError] = useState(null);
+  const [eduError, setEduError] = useState(null);
   useEffect(() => {
-    let mounted = true;
-    getWorks().then((items) => {
-      if (mounted) {
-        if (items.success === true) {
-          setWorks(items.data);
-          setWorkIsLoading(false);
-        } else {
-          setWorks([]);
-        }
-      }
+    const controller = new AbortController();
+    const { signal } = controller;
+    getWorks({ signal }).then((items) => {
+      if (signal.aborted) return;
+      setWorks(items.data);
+      setWorkError(items.success ? null : "Could not load work experience.");
+      setWorkIsLoading(false);
     });
 
-    getEducations().then((items) => {
-      if (mounted) {
-        if (items.success === true) {
-          setEducations(items.data);
-          setEduIsLoading(false);
-        } else {
-          setEducations([]);
-        }
-      }
+    getEducations({ signal }).then((items) => {
+      if (signal.aborted) return;
+      setEducations(items.data);
+      setEduError(items.success ? null : "Could not load education.");
+      setEduIsLoading(false);
     });
-    return () => {
-      mounted = false;
-    };
+    return () => controller.abort();
   }, []);
   const briefcase = <BriefcaseIcon />;
   const school = <SchoolIcon />;
@@ -64,6 +58,7 @@ function Resume() {
               // timeout={3000}
             />
           )}
+          {!isWorkLoading && workError && <ErrorMessage message={workError} />}
           {!isWorkLoading &&
             works
               .slice()
@@ -94,6 +89,7 @@ function Resume() {
               // timeout={3000}
             />
           )}
+          {!isEduLoading && eduError && <ErrorMessage message={eduError} />}
           {!isEduLoading &&
             educations
               .slice()

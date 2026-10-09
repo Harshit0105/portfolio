@@ -1,10 +1,5 @@
-import base_url from "./config";
+import { fetchResource } from "./api";
 
-export function getWorks() {
-  let url = base_url + "works/";
-  return fetch(url)
-    .then((data) => data.json())
-    .catch(function (err) {
-      return { success: false };
-    });
+export function getWorks(options) {
+  return fetchResource("works/", options);
 }

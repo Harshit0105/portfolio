@@ -5,13 +5,14 @@ import Menu from "../Components/Menu";
 import Button from "../Components/Button";
 import { getPortfolios } from "../data/portfolio";
 import Loader from "react-loader-spinner";
+import ErrorMessage from "../Components/ErrorMessage";
 
 function PortfoliosPage() {
   const [menuItem, setMenuItem] = useState([]);
   const [portfolios, setPortfolios] = useState([]);
   const [button, setButtons] = useState([]);
   const [isPortfolioLoading, setIsPortfolioLoading] = useState(true);
-  let allButtons = [];
+  const [portfolioError, setPortfolioError] = useState(null);
   const filter = (button) => {
     if (button === "All") {
       setMenuItem(portfolios);
@@ -23,25 +24,24 @@ function PortfoliosPage() {
     }
   };
   useEffect(() => {
-    getPortfolios().then((items) => {
-      if (items.success === true) {
-        setIsPortfolioLoading(false);
+    const controller = new AbortController();
+    getPortfolios({ signal: controller.signal }).then((items) => {
+      if (controller.signal.aborted) return;
+      setIsPortfolioLoading(false);
+      if (items.success) {
+        const categories = items.data.flatMap((item) => item.category || []);
         setPortfolios(items.data);
-        let newButtons = [
-          ...items.data.map((item) => item.category.map((item2) => item2)),
-        ];
-        newButtons = [].concat(...newButtons);
-        allButtons = ["All", ...new Set(newButtons.map((x) => x))];
-
-        setButtons(allButtons);
+        setButtons(["All", ...new Set(categories)]);
         setMenuItem(items.data);
+        setPortfolioError(null);
       } else {
         setPortfolios([]);
-        setIsPortfolioLoading(true);
-        allButtons = [];
-        setButtons(allButtons);
+        setButtons([]);
+        setMenuItem([]);
+        setPortfolioError("Could not load projects.");
       }
     });
+    return () => controller.abort();
   }, []);
   return (
     <MainLayout>
@@ -61,7 +61,10 @@ function PortfoliosPage() {
         {/* {!isPortfolioLoading && (
           <Button filter={filter} button={button ? button : null} />
         )} */}
-        {!isPortfolioLoading && <Menu menuItem={menuItem} />}
+        {!isPortfolioLoading && portfolioError && (
+          <ErrorMessage message={portfolioError} />
+        )}
+        {!isPortfolioLoading && !portfolioError && <Menu menuItem={menuItem} />}
       </InnerLayout>
     </MainLayout>
   );
