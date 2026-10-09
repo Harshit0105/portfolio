@@ -1,13 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 
-function Button({ filter, button }) {
+function Button({ filter, button, active }) {
   return (
-    <ButtonsStyled>
+    <ButtonsStyled role="group" aria-label="Filter projects by category">
       {button
-        ? button.map((item, i) => {
+        ? button.map((item) => {
+            const isActive = item === active;
             return (
-              <ButtonStyled key={i} onClick={() => filter(item)}>
+              <ButtonStyled
+                key={item}
+                type="button"
+                className={isActive ? "active" : undefined}
+                aria-pressed={isActive}
+                onClick={() => filter(item)}
+              >
                 {item}
               </ButtonStyled>
             );
@@ -28,9 +35,13 @@ const ButtonStyled = styled.button`
   margin-bottom: 1.2rem;
 
   border-radius: 32px;
-  &:active,
-  &:focus {
+  cursor: pointer;
+  &.active {
     background-color: var(--primary-color);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--white-color);
+    outline-offset: 2px;
   }
   &:hover {
     background-color: var(--primary-color);

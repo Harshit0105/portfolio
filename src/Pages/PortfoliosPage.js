@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { MainLayout, InnerLayout } from "../styles/Layouts";
 import Title from "../Components/Title";
 import Menu from "../Components/Menu";
@@ -7,39 +7,29 @@ import { getPortfolios } from "../data/portfolio";
 import Loader from "react-loader-spinner";
 
 function PortfoliosPage() {
-  const [menuItem, setMenuItem] = useState([]);
   const [portfolios, setPortfolios] = useState([]);
-  const [button, setButtons] = useState([]);
+  const [activeCategory, setActiveCategory] = useState("All");
   const [isPortfolioLoading, setIsPortfolioLoading] = useState(true);
-  let allButtons = [];
-  const filter = (button) => {
-    if (button === "All") {
-      setMenuItem(portfolios);
-    } else {
-      const filteredData = portfolios.filter(
-        (item) => item.category.indexOf(button) > -1
-      );
-      setMenuItem(filteredData);
-    }
-  };
+
+  const categories = useMemo(() => {
+    const all = portfolios.flatMap((item) => item.category || []);
+    return ["All", ...new Set(all)];
+  }, [portfolios]);
+
+  const menuItem = useMemo(() => {
+    if (activeCategory === "All") return portfolios;
+    return portfolios.filter((item) =>
+      (item.category || []).includes(activeCategory)
+    );
+  }, [portfolios, activeCategory]);
   useEffect(() => {
     getPortfolios().then((items) => {
       if (items.success === true) {
         setIsPortfolioLoading(false);
         setPortfolios(items.data);
-        let newButtons = [
-          ...items.data.map((item) => item.category.map((item2) => item2)),
-        ];
-        newButtons = [].concat(...newButtons);
-        allButtons = ["All", ...new Set(newButtons.map((x) => x))];
-
-        setButtons(allButtons);
-        setMenuItem(items.data);
       } else {
         setPortfolios([]);
         setIsPortfolioLoading(true);
-        allButtons = [];
-        setButtons(allButtons);
       }
     });
   }, []);
@@ -58,9 +48,13 @@ function PortfoliosPage() {
             // timeout={3000}
           />
         )}
-        {/* {!isPortfolioLoading && (
-          <Button filter={filter} button={button ? button : null} />
-        )} */}
+        {!isPortfolioLoading && categories.length > 2 && (
+          <Button
+            filter={setActiveCategory}
+            button={categories}
+            active={activeCategory}
+          />
+        )}
         {!isPortfolioLoading && <Menu menuItem={menuItem} />}
       </InnerLayout>
     </MainLayout>
